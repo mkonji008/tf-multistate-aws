@@ -1,0 +1,12 @@
+[
+  {
+    "name": "featureA",
+    "dir": "infra/modules/featureA",
+    "stateFile": "featureA.tfstate"
+  },
+  {
+    "name": "featureB",
+    "dir": "infra/modules/featureB",
+    "stateFile": "featureB.tfstate"
+  }
+]

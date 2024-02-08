@@ -1,0 +1,27 @@
+name: tfrunner for prod env example
+
+on:
+  push:
+    branches:
+      - master 
+
+jobs:
+  build:
+    name: tfrunner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
+
+      - name: build tfrunner go app
+        run: go build -o tfrunner_multistate /infra/utl/tfrunner_multistate.go
+
+      - name: execute tfrunner app ## check "os.Args" in the go app i wrote for more details. you just need to match an exiting folder env name of in "/infra/environments" (dev, staging, qc, prod etc..)
+        run: |
+          ./tfrunner_multistate prod
